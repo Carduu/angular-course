@@ -1,18 +1,22 @@
 <div class="courses-containers">
     <div class="courses-list">
         <mat-card>
-        <mat-card-header>
-            <mat-card-title>
-            Course List
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-
-            <!-- COURSES LIST -->
-
-        </mat-card-content>
+            <mat-card-header>
+                <mat-card-title>
+                Course List
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <!-- COURSES LIST -->
+                <mat-list>
+                    <mat-list-item *ngFor="let course of courses" (click)="selectCourse(course)">
+                        <h3>{{course.title}}</h3>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
         </mat-card>
     </div>
+
 
     <div class="course-details">
         <mat-card>
@@ -21,16 +25,32 @@
                     Select Course
                 </mat-card-title>
             </mat-card-header>
-            <mat-card-content>
-            
-            <!-- COURSE FORM -->
-
-            </mat-card-content>
-            <mat-card-actions>
-
-            <!-- COURSE ACTIONS -->
-
-            </mat-card-actions>
+            <br>
+            <form #form="ngForm" (ngSubmit)="saveCourse()">
+                <mat-card-content>
+                    <mat-form-field>
+                        <input matInput placeholder="Title" type="text" name="title" required
+                        [(ngModel)]="selectedCourse.title">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Description" type="text" name="description" required
+                        [(ngModel)]="selectedCourse.description">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Percent Complete" type="number" name="percentComplete" required
+                        [(ngModel)]="selectedCourse.percentComplete">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Favorite" type="text" name="favorite" required
+                        [(ngModel)]="selectedCourse.favorite">
+                    </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button [disabled]="form.invalid" type="submit" mat-button color="primary">Submit</button>
+                    <button type="button" mat-button (click)="resetSelectedCourse()">Reset</button>
+                </mat-card-actions>
+                <pre *ngIf="selectedCourse">{{selectedCourse | json}}</pre>
+            </form>
         </mat-card>
     </div>
 </div>
