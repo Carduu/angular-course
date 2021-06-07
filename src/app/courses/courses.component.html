@@ -10,7 +10,12 @@
                 <!-- COURSES LIST -->
                 <mat-list>
                     <mat-list-item *ngFor="let course of courses" (click)="selectCourse(course)">
-                        <h3>{{course.title}}</h3>
+                        <h3 matLine>{{course.title}}</h3>
+                        <p matLine>{{course.description}}</p>
+                        <button mat-icon-button color="warn"
+                            (click)="deleteCourse(course.id);$event.stopImmediatePropagation()">
+                            <mat-icon>delete</mat-icon>
+                        </button>
                     </mat-list-item>
                 </mat-list>
             </mat-card-content>
@@ -26,7 +31,7 @@
                 </mat-card-title>
             </mat-card-header>
             <br>
-            <form #form="ngForm" (ngSubmit)="saveCourse()">
+            <form #form="ngForm" (ngSubmit)="saveCourse(selectedCourse)">
                 <mat-card-content>
                     <mat-form-field>
                         <input matInput placeholder="Title" type="text" name="title" required
@@ -36,14 +41,18 @@
                         <input matInput placeholder="Description" type="text" name="description" required
                         [(ngModel)]="selectedCourse.description">
                     </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Percent Complete" type="number" name="percentComplete" required
+                    <section>
+                        <h4 style="color: gray">Percent Complete *</h4>
+                        <mat-slider thumbLabel [style.width.%]="50" name="percentComplete" required
                         [(ngModel)]="selectedCourse.percentComplete">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input matInput placeholder="Favorite" type="text" name="favorite" required
+                        </mat-slider>
+                    </section>
+                    <section>
+                        <h4 style="color: gray">Favorite</h4>
+                        <mat-checkbox name="favorite"
                         [(ngModel)]="selectedCourse.favorite">
-                    </mat-form-field>
+                        </mat-checkbox>
+                    </section>
                 </mat-card-content>
                 <mat-card-actions>
                     <button [disabled]="form.invalid" type="submit" mat-button color="primary">Submit</button>
