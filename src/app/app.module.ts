@@ -11,6 +11,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from "@angular/forms";
 import { LessonsService } from "./shared/services/lessons.service";
 import { CoursesService } from "./shared/services/courses.service";
+import { LessonsListComponent } from './home/lessons-list/lessons-list.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { CoursesService } from "./shared/services/courses.service";
   declarations: [
     AppComponent,
     HomeComponent,
-    CoursesComponent
+    CoursesComponent,
+    LessonsListComponent,
   ],
   providers: [
       LessonsService,

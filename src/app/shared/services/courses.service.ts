@@ -36,7 +36,7 @@ export class CoursesService {
   private model = 'courses';
 
   private getUrl() {
-    return `${BASE_URL}${this.model}`;;
+    return `${BASE_URL}${this.model}`;
   }
 
   all() {
