@@ -10,6 +10,7 @@ export class AppComponent {
   links = [
     { path: '/home', icon: 'home', title: 'Home' },
     { path: '/courses', icon: 'view_list', title: 'Courses' },
+    { path: '/users', icon: 'person', title: 'Users' },
   ];
 
   constructor() {}
