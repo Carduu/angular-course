@@ -13,7 +13,11 @@ export class HomeComponent implements OnInit {
   constructor(private lessonsService: LessonsService) { }
 
   ngOnInit(): void {
-    this.courseLessons = this.lessonsService.all();
+    this.loadLessons();
   }
 
+  loadLessons() {
+    this.lessonsService.all()
+        .subscribe(lessons => this.courseLessons = lessons);
+  }
 }

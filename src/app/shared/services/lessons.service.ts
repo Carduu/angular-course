@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+
+const BASE_URL = 'http://localhost:3000/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LessonsService {
-  private courseLessons = [
-    { title: 'Hello Angular' },
-    { title: 'Component Fundamentals' },
-    { title: 'Template Driven Forms' },
-    { title: 'Angular Services' },
-    { title: 'Server Communication' },
-    { title: 'Component Driven Architecture' },
-    { title: 'Angular Routing' },
-    { title: 'Unit Testing Fundamentals' },
-  ];
+  private model = 'courseLessons';
 
-  constructor() { }
+  private courseLessons = null;
+
+  constructor(private http: HttpClient) { }
+
+  getUrl() {
+    return `${BASE_URL}${this.model}`;
+  }
 
   all(){
-    return this.courseLessons;
+    return this.http.get(this.getUrl());
   }
 }
